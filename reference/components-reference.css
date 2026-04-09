@@ -1,0 +1,362 @@
+/*
+ * Shared Components Reference — SP26 Colorway Trend Study
+ *
+ * Extracted from the production slide deck (Color-Overview-20260403-v1.html).
+ * These are the reusable UI elements that appear across multiple pages.
+ *
+ * Dependencies: tokens-reference.css must be loaded first.
+ */
+
+/* ===========================================
+   BASE RESET & VIEWPORT FITTING
+   =========================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg-gradient);
+    color: var(--color-ink);
+}
+
+/* ===========================================
+   SLIDE CONTAINER
+   =========================================== */
+.slide {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.slide-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 100%;
+    overflow: hidden;
+    padding: var(--slide-padding);
+}
+
+/* Decorative center-line overlay */
+.slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, transparent calc(50% - 0.5px), var(--color-grid) calc(50% - 0.5px), var(--color-grid) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+    pointer-events: none;
+}
+
+/* ===========================================
+   ENTRANCE ANIMATION
+   =========================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity var(--duration-normal) var(--ease-out-expo),
+                transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.slide:not(.visible) .reveal {
+    will-change: opacity, transform;
+}
+
+.slide.visible .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    will-change: auto;
+}
+
+.reveal:nth-child(1) { transition-delay: 0.08s; }
+.reveal:nth-child(2) { transition-delay: 0.18s; }
+.reveal:nth-child(3) { transition-delay: 0.28s; }
+.reveal:nth-child(4) { transition-delay: 0.38s; }
+
+/* ===========================================
+   CHAPTER EYEBROW
+   =========================================== */
+.eyebrow {
+    font-size: var(--text-sm);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+/* ===========================================
+   PAGE TITLE
+   =========================================== */
+.title {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    line-height: 1.04;
+    font-weight: 700;
+}
+
+/* ===========================================
+   TAKEAWAY / CONCLUSION TEXT
+   =========================================== */
+.takeaway {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    line-height: 1.5;
+    color: rgba(50, 40, 32, 0.72);
+    font-style: italic;
+    white-space: nowrap;
+    padding: var(--space-1) var(--space-4);
+    margin: var(--space-1) 0;
+    border-left: 2.5px solid var(--color-accent);
+}
+
+/* ===========================================
+   CONTENT CARD / PANEL
+   =========================================== */
+.card {
+    position: relative;
+    border-radius: var(--board-radius);
+    padding: var(--board-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--header-gap);
+    min-height: 0;
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    box-shadow: 0 18px 40px var(--color-surface-shadow);
+}
+
+/* ===========================================
+   NAVIGATION BUTTONS
+   =========================================== */
+.nav-btn {
+    min-width: 2.75rem;     /* WCAG 2.5.5: 44px touch target */
+    min-height: 2.75rem;
+    width: clamp(1.5rem, 2.2vw, 2rem);
+    height: clamp(1.5rem, 2.2vw, 2rem);
+    border-radius: 50%;
+    border: 1px solid rgba(90, 72, 58, .15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 253, 250, .7);
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+    text-decoration: none;
+    color: var(--color-accent);
+}
+
+.nav-btn:hover {
+    background: rgba(159, 60, 50, .1);
+    border-color: rgba(159, 60, 50, .3);
+}
+
+.nav-btn .material-symbols-outlined {
+    font-size: clamp(0.8rem, 1.1vw, 1rem);
+}
+
+/* ===========================================
+   PAGE HEADER (eyebrow + title + nav buttons)
+   =========================================== */
+.slide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-4);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+}
+
+/* ===========================================
+   PAGE FOOTER
+   =========================================== */
+.slide-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-8);
+    font-size: var(--text-xs);
+    line-height: 1.5;
+    color: rgba(66, 53, 42, 0.78);
+}
+
+.slide-footer strong { font-weight: 700; }
+
+.footer-note {
+    opacity: 0.92;
+    max-width: min(76ch, 68%);
+}
+
+/* ===========================================
+   FILTER SELECT (gender / season dropdowns)
+   =========================================== */
+.filter-group {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.filter-select {
+    position: relative;
+}
+
+.filter-select select {
+    appearance: none;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    padding: var(--space-1) clamp(1.1rem, 1.6vw, 1.4rem) var(--space-1) var(--space-3);
+    border: 1px solid rgba(90, 72, 58, .18);
+    border-radius: 999px;
+    background: rgba(255, 252, 248, .8);
+    color: #56423f;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.filter-select::after {
+    content: "\25be";
+    position: absolute;
+    right: var(--space-2);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.55em;
+    color: #89726e;
+    pointer-events: none;
+}
+
+/* ===========================================
+   COLOR DOT (inline swatch in text)
+   =========================================== */
+.cd {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0 1px;
+    opacity: 0.72;
+    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    position: relative;
+    top: -0.5px;
+}
+.cd--white { border-color: rgba(0, 0, 0, 0.18); }
+.cd--black { background: #2a2a2a; }
+
+/* ===========================================
+   FLOATING TABS (chapter bookmarks)
+   =========================================== */
+.float-tabs {
+    position: fixed;
+    top: clamp(0.6rem, 1.2vh, 1rem);
+    right: clamp(0.8rem, 1.5vw, 1.2rem);
+    z-index: 30;
+    display: flex;
+    gap: 0;
+}
+
+.float-tab {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(50, 40, 32, 0.35);
+    padding: var(--space-2) var(--space-3);
+    background: rgba(248, 244, 238, 0.6);
+    border: 1px solid rgba(93, 78, 63, 0.08);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.35s var(--ease-out-expo);
+}
+
+.float-tab:first-child { border-radius: var(--space-2) 0 0 0; border-right: none; }
+.float-tab:last-child  { border-radius: 0 var(--space-2) 0 0; }
+
+.float-tab.active {
+    color: var(--color-ink-dark);
+    background: rgba(255, 253, 250, 0.95);
+    border-bottom-color: var(--color-accent);
+    box-shadow: 0 2px 12px var(--color-surface-shadow);
+}
+
+.float-tab:hover:not(.active) {
+    color: rgba(50, 40, 32, 0.6);
+    background: rgba(248, 244, 238, 0.85);
+}
+
+/* ===========================================
+   BRAND STAMP (bottom-left watermark)
+   =========================================== */
+.brand-stamp {
+    position: fixed;
+    bottom: clamp(0.7rem, 1.3vh, 1rem);
+    left: clamp(0.8rem, 1.5vw, 1.2rem);
+    z-index: 30;
+    font-family: var(--font-sans);
+    font-size: clamp(0.5rem, 0.62vw, 0.6rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: rgba(50, 40, 32, 0.2);
+    transition: color 0.35s var(--ease-out-expo);
+}
+
+.brand-stamp:hover { color: rgba(50, 40, 32, 0.4); }
+
+/* ===========================================
+   MATERIAL SYMBOLS CONFIG
+   =========================================== */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' var(--icon-weight, 300), 'GRAD' 0, 'opsz' 24;
+}
+
+/* ===========================================
+   RESPONSIVE BREAKPOINTS
+   =========================================== */
+@media (max-height: 700px) {
+    :root { --slide-padding: clamp(0.75rem, 3vw, 2rem); }
+}
+
+@media (max-height: 600px) {
+    :root { --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem); }
+}
+
+@media (max-height: 500px) {
+    :root { --slide-padding: clamp(0.4rem, 2vw, 1rem); }
+}
+
+@media (max-width: 760px) {
+    .slide-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .footer-note { max-width: 100%; }
+    .float-tabs { display: none; }
+    .brand-stamp { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+    html { scroll-behavior: auto; }
+}

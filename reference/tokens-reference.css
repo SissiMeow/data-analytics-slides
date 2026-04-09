@@ -1,0 +1,101 @@
+/*
+ * Design Tokens Reference — SP26 Colorway Trend Study
+ *
+ * Extracted from the production slide deck (Color-Overview-20260403-v1.html).
+ * Use as a starting point for new projects; customize colors and fonts to match
+ * your brand and .impeccable.md specifications.
+ *
+ * FONT_LINKS:
+ * <link rel="preconnect" href="https://fonts.googleapis.com">
+ * <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ * <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+ * <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+ */
+
+:root {
+    /* ===========================================
+       TYPOGRAPHY
+       =========================================== */
+    --font-serif: "Noto Serif SC", serif;
+    --font-sans: "Noto Sans SC", "DM Sans", sans-serif;
+    --font-display: "Manrope", "Noto Sans SC", sans-serif;
+    /* Cormorant Garamond used for decorative headings (cover page) */
+
+    /* Type Scale — all responsive via clamp() */
+    --text-xs:   clamp(0.52rem, 0.68vw, 0.64rem);
+    --text-sm:   clamp(0.62rem, 0.8vw, 0.76rem);
+    --text-base: clamp(0.78rem, 1vw, 0.98rem);
+    --text-lg:   clamp(0.85rem, 1.2vw, 1.1rem);
+    --text-xl:   clamp(1rem, 1.45vw, 1.3rem);
+    --text-2xl:  clamp(1.4rem, 2.4vw, 2.2rem);
+    --text-3xl:  clamp(2.2rem, 4.5vw, 3.6rem);  /* hero numbers */
+
+    /* ===========================================
+       COLORS
+       =========================================== */
+
+    /* Brand / Accent */
+    --color-accent: #9f3c32;
+
+    /* Ink (text) */
+    --color-ink: #241d18;
+    --color-ink-dark: #322820;
+    --color-ink-muted: rgba(71, 56, 43, 0.74);
+
+    /* Background */
+    --color-bg: #f8f4ee;
+    --color-bg-gradient: linear-gradient(180deg, #f8f4ee 0%, #fbfaf7 16%, #f5f1eb 100%);
+
+    /* Gender / Category differentiation */
+    --color-primary: #872d20;     /* Women's accent (warm red-brown) */
+    --color-secondary: #005550;   /* Men's accent (teal green) */
+    --w-color: var(--color-primary);
+    --m-color: var(--color-secondary);
+
+    /* Surface (cards, panels) */
+    --color-surface: rgba(255, 253, 250, 0.84);
+    --color-surface-border: rgba(90, 72, 58, 0.08);
+    --color-surface-shadow: rgba(98, 79, 62, 0.08);
+
+    /* Grid lines */
+    --color-grid: rgba(93, 78, 63, 0.16);
+    --color-divider: rgba(96, 77, 61, 0.22);
+
+    /* ===========================================
+       SPACING
+       =========================================== */
+    --space-1:  clamp(0.15rem, 0.35vw, 0.25rem);
+    --space-2:  clamp(0.25rem, 0.5vw, 0.4rem);
+    --space-3:  clamp(0.35rem, 0.7vw, 0.6rem);
+    --space-4:  clamp(0.5rem, 1vw, 0.8rem);
+    --space-6:  clamp(0.8rem, 1.5vw, 1.2rem);
+    --space-8:  clamp(1rem, 2vw, 1.6rem);
+    --space-10: clamp(1.4rem, 2.8vh, 2.2rem);
+    --space-12: clamp(1.5rem, 3vh, 2.5rem);
+
+    /* ===========================================
+       LAYOUT
+       =========================================== */
+    --slide-padding: clamp(0.8rem, 2.5vw, 2.2rem);
+    --board-radius: clamp(1rem, 2vw, 1.6rem);
+    --board-padding: clamp(0.8rem, 1.8vw, 1.6rem);
+
+    /* Chart-specific layout tokens */
+    --row-height: clamp(2rem, 4.5vh, 3.2rem);
+    --bar-height: clamp(1rem, 2.2vh, 1.45rem);
+    --header-gap: clamp(0.3rem, 0.8vh, 0.6rem);
+    --center-width: clamp(7rem, 10vw, 9.5rem);
+    --growth-col: clamp(4.5rem, 7vw, 6.2rem);
+
+    /* ===========================================
+       ANIMATION
+       =========================================== */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-normal: 0.7s;
+    --duration-fast: 0.25s;
+
+    /* ===========================================
+       ICONS
+       =========================================== */
+    --icon-weight: 300;  /* Material Symbols font-variation-settings */
+}
